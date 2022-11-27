@@ -5,21 +5,37 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 public class OrrangeHRMLoginTest {
 
+    @Parameters("Browser")
     @Test
-    public void LoginTest() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options =new ChromeOptions();
-        options.setHeadless(true);
-        WebDriver driver = new ChromeDriver(options);
+    public void LoginTest(String browserName) throws InterruptedException {
+        WebDriver driver = null;
+        if(browserName.equalsIgnoreCase("chrome")){
+            System.out.println("Provided Browser: "+browserName);
+            WebDriverManager.chromedriver().setup();
+            ChromeOptions options =new ChromeOptions();
+            options.setHeadless(true);
+            driver = new ChromeDriver(options);
+        }else if (browserName.equalsIgnoreCase("edge")){
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        }else if (browserName.equalsIgnoreCase("firefox")){
+            WebDriverManager.firefoxdriver().setup();
+            FirefoxOptions options = new FirefoxOptions();
+            options.setHeadless(true);
+            driver = new FirefoxDriver(options);
+        }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://opensource-demo.orangehrmlive.com/");
