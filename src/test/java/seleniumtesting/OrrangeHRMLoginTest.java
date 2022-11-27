@@ -19,7 +19,7 @@ import java.time.Duration;
 public class OrrangeHRMLoginTest {
 
     @Parameters("Browser")
-    @Test
+    @Test(enabled = false)
     public void LoginTest(String browserName) throws InterruptedException {
         WebDriver driver = null;
         if(browserName.equalsIgnoreCase("chrome")){
@@ -54,5 +54,10 @@ public class OrrangeHRMLoginTest {
     @Test
     public void Test2(){
         Assert.assertTrue(true);
+    }
+
+    @Test
+    public void Test3(){
+        Assert.assertTrue(false);
     }
 }
