@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -48,5 +49,10 @@ public class OrrangeHRMLoginTest {
         driver.findElement(By.xpath("//a[@class='oxd-userdropdown-link' and text()='Logout']")).click();
         Thread.sleep(2000);
         driver.quit();
+    }
+
+    @Test
+    public void Test2(){
+        Assert.assertTrue(true);
     }
 }
